@@ -1,0 +1,11 @@
+.device-control-container {
+    padding: 20px;
+  }
+  
+  mat-table {
+    margin-top: 20px;
+  }
+  
+  button {
+    margin-left: 10px;
+  }

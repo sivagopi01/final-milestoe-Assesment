@@ -1,0 +1,53 @@
+<div class="monitoring-container">
+    <h1>Monitoring Metrics</h1>
+    
+    <!-- Metrics Table -->
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Device ID</th>
+          <th>User ID</th>
+          <th>Status</th>
+          <th>Timestamp</th>
+          <th>Message</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let metric of metrics">
+          <td>{{ metric.id }}</td>
+          <td>{{ metric.deviceId }}</td>
+          <td>{{ metric.userId }}</td>
+          <td>{{ metric.status }}</td>
+          <td>{{ metric.timestamp | date: 'short' }}</td>
+          <td>{{ metric.message }}</td>
+          <td>
+            <button (click)="selectMetric(metric)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Metric Update Form -->
+    <div *ngIf="selectedMetric.id !== 0" class="update-form">
+      <h2>Edit Monitoring Metric</h2>
+      
+      <form (ngSubmit)="updateMetric()">
+        <label for="deviceId">Device ID:</label>
+        <input id="deviceId" [(ngModel)]="selectedMetric.deviceId" name="deviceId" type="number" required />
+  
+        <label for="userId">User ID:</label>
+        <input id="userId" [(ngModel)]="selectedMetric.userId" name="userId" type="number" required />
+  
+        <label for="status">Status:</label>
+        <input id="status" [(ngModel)]="selectedMetric.status" name="status" type="text" required />
+  
+        <label for="message">Message:</label>
+        <input id="message" [(ngModel)]="selectedMetric.message" name="message" type="text" />
+  
+        <button type="submit">Save</button>
+        <button type="button" (click)="clearSelection()">Cancel</button>
+      </form>
+    </div>
+  </div>

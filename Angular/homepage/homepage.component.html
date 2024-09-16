@@ -1,0 +1,33 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Smart Home Automation</span>
+      <span class="spacer"></span>
+      <button mat-button (click)="logout()">Logout</button>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <a mat-button routerLink="/devices">Devices</a>
+      <a mat-button routerLink="/users">Users</a>
+      <a mat-button routerLink="/settings">Settings</a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <div class="homepage-container">
+    <h1>Welcome to Smart Home Automation</h1>
+    <p>Overview of the Smart Home System:</p>
+    <mat-card class="overview-card">
+      <mat-card-title>System Overview</mat-card-title>
+      <mat-card-content>
+        <p><strong>Total Devices:</strong> {{totalDevices}}</p>
+        <p><strong>System Status:</strong> {{systemStatus}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" routerLink="/devices">Manage Devices</button>
+        <button mat-raised-button color="primary" routerLink="/monitoring">Monitoring</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
+  <footer class="footer">
+    <p>Contact Information: info@smarthome.com</p>
+    <p><a routerLink="/privacy-policy">Privacy Policy</a> | <a routerLink="/terms-of-service">Terms of Service</a></p>
+  </footer>

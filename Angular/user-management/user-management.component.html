@@ -1,0 +1,63 @@
+<div class="user-management-container">
+    <h1>User Management</h1>
+  
+    <form [formGroup]="userForm" (ngSubmit)="isEditing ? updateUser() : addUser()">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" />
+        <mat-error *ngIf="userForm.get('username')?.hasError('required')">Username is required</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" />
+        <mat-error *ngIf="userForm.get('email')?.hasError('required')">Email is required</mat-error>
+        <mat-error *ngIf="userForm.get('email')?.hasError('email')">Invalid email address</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="Admin">Admin</mat-option>
+          <mat-option value="User">User</mat-option>
+        </mat-select>
+        <mat-error *ngIf="userForm.get('role')?.hasError('required')">Role is required</mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">{{ isEditing ? 'Update' : 'Add' }}</button>
+      <button mat-button type="button" (click)="resetForm()">Cancel</button>
+    </form>
+  
+    <mat-table [dataSource]="users">
+      <ng-container matColumnDef="userID">
+        <mat-header-cell *matHeaderCellDef> User ID </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.userID}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.username}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.email}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.role}} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let user">
+          <button mat-button (click)="selectUser(user)">Edit</button>
+          <button mat-button (click)="deleteUser(user.userID)">Delete</button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>

@@ -1,0 +1,26 @@
+mat-toolbar {
+    margin-bottom: 20px;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .homepage-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .overview-card {
+    margin: 20px auto;
+    max-width: 600px;
+  }
+  
+  .footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
